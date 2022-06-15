@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "graph.h"
+#include "digraph.h"
 
 const static int NUM_V = 13;
 const static int NUM_E = 13;
@@ -21,31 +22,46 @@ char edgeData[][2] = {
 	{5,3},
 };
 
-int degree(Graph* g, int v) {
-	auto vec = g->adj(v);
-	return vec.size();
-}
 
 
 int main()
 {
-	Graph g;
-	g.buildGraph(NUM_V, edgeData);
-	std::cout << g.toString();
-
-	std::stringstream ss;
-	ss << " 0 link with: ";
-	Search s(&g, 0);
-	for (int i = 0; i < g.V(); i++)
+	if (false)
 	{
-		if (s.marked(i))
+		Graph g;
+		g.buildGraph(NUM_V, edgeData);
+		std::cout << g.toString();
+		std::stringstream ss;
+		ss << " 0 link with: ";
+		Search s(&g, 0);
+		for (int i = 0; i < g.V(); i++)
 		{
-			ss << " ";
-			ss << i;
+			if (s.marked(i))
+			{
+				ss << " ";
+				ss << i;
+			}
 		}
+		std::cout << ss.str() << std::endl;
+	} 
+
+	if (true)
+	{
+		Digraph g(13);
+		std::cout << g.toString() << std::endl;
+
+		DiSearch s(&g, 0);
+		std::cout <<  "0->8" << " : " << s.marked(9) << std::endl;
+
+		std::vector<int> vv;
+		vv.push_back(0);
+		vv.push_back(6);
+		DiSearch s1(&g, vv);
+		std::cout <<  "0, 6->8" << " : " << s1.marked(9) << std::endl;
 	}
-		
-	std::cout << ss.str() << std::endl; 
+
+
+
 	std::cin.get();
     return 0;
 }
