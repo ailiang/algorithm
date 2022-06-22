@@ -29,3 +29,13 @@ private:
 	std::vector<bool> _marked;
 	void dfs(Digraph* g, int v);
 };
+
+class DiCycle {
+public:
+
+	DiCycle(Digraph* g);
+	bool hasCycle();
+	std::vector<int> cycle();
+private:
+	void dfs(Digraph* g, int v);
+};

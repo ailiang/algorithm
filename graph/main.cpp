@@ -2,6 +2,8 @@
 #include <iostream>
 #include "graph.h"
 #include "digraph.h"
+#include "reader.h"
+#include "weightGraph.h"
 
 const static int NUM_V = 13;
 const static int NUM_E = 13;
@@ -45,7 +47,7 @@ int main()
 		std::cout << ss.str() << std::endl;
 	} 
 
-	if (true)
+	if (false)
 	{
 		Digraph g(13);
 		std::cout << g.toString() << std::endl;
@@ -60,7 +62,19 @@ int main()
 		std::cout <<  "0, 6->8" << " : " << s1.marked(9) << std::endl;
 	}
 
-
+	if (true)
+	{
+		std::string filename("data/tinyEWG.txt");
+		std::vector<edgeDT> dt;
+		readFile(filename, EDT_3, dt);
+		WeightGraph g(dt);
+		auto edges = g.edges();
+		for (auto& e: edges)
+		{
+			std::cout << e.toString() << "\n";
+		}
+				
+	}
 
 	std::cin.get();
     return 0;

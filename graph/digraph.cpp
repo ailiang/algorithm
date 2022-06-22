@@ -115,3 +115,22 @@ void DiSearch::dfs(Digraph* g, int v)
 		}
 	}
 }
+
+DiCycle::DiCycle(Digraph * g)
+{
+}
+
+bool DiCycle::hasCycle()
+{
+	return false;
+}
+
+std::vector<int> DiCycle::cycle()
+{
+	return std::vector<int>();
+}
+
+void DiCycle::dfs(Digraph* g, int v)
+{
+
+}
