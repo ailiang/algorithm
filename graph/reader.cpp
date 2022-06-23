@@ -7,14 +7,17 @@
 
 using namespace std;
 
-bool readFile(const std::string& filename, edgeDataType t, std::vector<edgeDT> &out) {
+int readFile(const std::string& filename, edgeDataType t, std::vector<edgeDT> &out) {
 	ifstream in;
+	int v = 0;
 	in.open(filename.c_str());
 	if (!in.is_open()) {
 		return false;
 	}
 	std::string line;
 	getline(in, line);
+	std::istringstream ss(line);
+	ss >> v;
 	getline(in, line);
 	edgeDT data;
 	while (getline(in, line)) {
@@ -27,5 +30,5 @@ bool readFile(const std::string& filename, edgeDataType t, std::vector<edgeDT> &
 		out.push_back(data);
 	}
 	in.close();
-	return true;
+	return v;
 }

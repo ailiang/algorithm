@@ -3,15 +3,16 @@
 #include <vector>
 #include <map>
 #include <string>
+#include "reader.h"
 
 class Digraph {
 public:
-	Digraph(int vNum); 
+	Digraph(int v, const std::vector<edgeDT>& dts);
+
 	int V() { return  _vNum; }
 	int E() { return _eNum; }
 	void addEdge(int v, int w);
 	std::vector<int> adj(int v);
-	Digraph* reverse();
 	std::string toString();
 	
 private:

@@ -20,12 +20,13 @@ struct edgeDT;
 
 class WeightGraph {
 public:
-	WeightGraph(const std::vector<edgeDT>& dt );
+	WeightGraph(int v, const std::vector<edgeDT>& dt );
 	int V() {return _v;};
 	int E() { return _e; }
 	void addEdge(const WeightEdge& e);
 	std::vector<WeightEdge> edges();
 	std::vector<WeightEdge> adj(int v);
+	std::string toString();
 private:
 	std::vector<std::vector<WeightEdge>> _adjs;
 	int _v, _e;

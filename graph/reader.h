@@ -17,4 +17,4 @@ enum edgeDataType
 	EDT_3 = 1,
 };
 
-bool readFile(const std::string& filename, edgeDataType t, std::vector<edgeDT> &out);
+int readFile(const std::string& filename, edgeDataType t, std::vector<edgeDT> &out);

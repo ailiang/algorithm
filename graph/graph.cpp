@@ -3,22 +3,17 @@
 #include <iostream>
 #include <list> 
 
-Graph::Graph(): _v(0), _e(0)
+Graph::Graph(int v, const std::vector<edgeDT>& dts): _v(v), _e(0)
 {
+	_adj.resize(_v);
+	for (auto& e: dts)
+	{
+		addEdge(e.a, e.b);
+	}
 }
-
 
 Graph::~Graph()
 {
-}
-
-void Graph::buildGraph(int V,  char data[][2])
-{
-	_v = V;
-	for (int i = 0; i < V; ++i)
-	{
-		addEdge(data[i][0], data[i][1]);
-	}
 }
 
 int Graph::V() const
@@ -40,29 +35,22 @@ void Graph::addEdge(int from, int to)
 
 std::vector<int> Graph::adj(int v)
 {
-	auto it = _adj.find(v);
-	if (it != _adj.end()) {
-		return it->second;
-	}
-	return std::vector<int>();
+	return _adj[v];
 }
 
 std::string Graph::toString() 
 {
 	std::stringstream s;
-	s << _v;
-	s << " vertex ";
-	s << _e;
-	s << " edge \n";
+	s << _v << " " << _e << "\n";
 	for (int i = 0; i < V(); i++ )
 	{
 		auto vec = adj(i);
 		s << i;
-		s << " :";
-		for (int j = 0; j < int(vec.size()); ++j )
+		s << " adj:";
+		for (auto& w: vec)
 		{
 			s << " ";
-			s << vec[j];
+			s << w;
 		}
 		s << "\n";
 	}

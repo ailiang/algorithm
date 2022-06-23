@@ -28,52 +28,31 @@ char edgeData[][2] = {
 
 int main()
 {
-	if (false)
+	if (true)
 	{
-		Graph g;
-		g.buildGraph(NUM_V, edgeData);
-		std::cout << g.toString();
-		std::stringstream ss;
-		ss << " 0 link with: ";
-		Search s(&g, 0);
-		for (int i = 0; i < g.V(); i++)
-		{
-			if (s.marked(i))
-			{
-				ss << " ";
-				ss << i;
-			}
-		}
-		std::cout << ss.str() << std::endl;
+		std::cout << "graph: \n";
+		std::vector<edgeDT> dt;
+		int v = readFile("data/tinyG.txt", EDT_2, dt);
+		Graph g(v, dt);
+		std::cout << g.toString() << std::endl;
 	} 
 
-	if (false)
+	if (true)
 	{
-		Digraph g(13);
+		std::cout << "digraph: \n";
+		std::vector<edgeDT> dt;
+		int v = readFile("data/tinyDG.txt", EDT_2, dt);
+		Digraph g(v, dt);
 		std::cout << g.toString() << std::endl;
-
-		DiSearch s(&g, 0);
-		std::cout <<  "0->8" << " : " << s.marked(9) << std::endl;
-
-		std::vector<int> vv;
-		vv.push_back(0);
-		vv.push_back(6);
-		DiSearch s1(&g, vv);
-		std::cout <<  "0, 6->8" << " : " << s1.marked(9) << std::endl;
 	}
 
 	if (true)
 	{
-		std::string filename("data/tinyEWG.txt");
+		std::cout << "EWgraph: \n";
 		std::vector<edgeDT> dt;
-		readFile(filename, EDT_3, dt);
-		WeightGraph g(dt);
-		auto edges = g.edges();
-		for (auto& e: edges)
-		{
-			std::cout << e.toString() << "\n";
-		}
-				
+		int v = readFile("data/tinyEWG.txt", EDT_3, dt);
+		WeightGraph g(v, dt);
+		std::cout << g.toString() << "\n";
 	}
 
 	std::cin.get();

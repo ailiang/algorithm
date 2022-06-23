@@ -34,13 +34,12 @@ int WeightEdge::compareTo(const WeightEdge & e)
 std::string WeightEdge::toString()
 {
 	std::stringstream ss;
-	ss << "v->w " << _v << "->" << _w << " weight:" << _weight;
+	ss <<  _v << "->" << _w << " " << _weight;
 	return ss.str();
 }
 
-WeightGraph::WeightGraph(const std::vector<edgeDT>& dt)
+WeightGraph::WeightGraph(int v, const std::vector<edgeDT>& dt):_v(v),_e(0)
 {
-	_v = dt.size();
 	_adjs.resize(_v);
 	for (auto& e : dt)
 	{
@@ -73,9 +72,26 @@ std::vector<WeightEdge> WeightGraph::edges()
 
 std::vector<WeightEdge> WeightGraph::adj(int v)
 {
-	if (v < 0 || v >= _adjs.size())
+	if (v < 0 || v >= (int)_adjs.size())
 	{
 		return std::vector<WeightEdge>();
 	}
 	return _adjs[v];
+}
+
+std::string WeightGraph::toString()
+{
+	std::stringstream ss;
+	ss << _v << " " << _e << "\n";
+	for (int i = 0; i < _v; i++)
+	{
+		auto vec = adj(i);
+		ss << i << " adj:  ";
+		for (auto& w: vec)
+		{
+			ss << w.other(i) << " " << w.weight() << " |";
+		}
+		ss << std::endl;
+	}
+	return ss.str();
 }

@@ -5,15 +5,14 @@
 #include <map>
 #include <sstream>
 #include <set>
+#include "reader.h"
 
 
 class Graph
 {
 public:
-	Graph();
+	Graph(int v, const std::vector<edgeDT>& dts);
 	~Graph();
-
-	void buildGraph(int V, char data[][2]);
 
 	int V() const;
 	int E() const;
@@ -22,7 +21,7 @@ public:
 	std::string toString();
 private:
 	int _v, _e;
-	std::map<int, std::vector<int>> _adj;
+	std::vector< std::vector<int>> _adj;
 };
 
 class Search {
