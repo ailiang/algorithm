@@ -38,6 +38,11 @@ std::string WeightEdge::toString()
 	return ss.str();
 }
 
+bool WeightEdge::operator<(const WeightEdge & e) const
+{
+	return e.weight() < weight();
+}
+
 WeightGraph::WeightGraph(int v, const std::vector<edgeDT>& dt):_v(v),_e(0)
 {
 	_adjs.resize(_v);

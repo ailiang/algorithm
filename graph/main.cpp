@@ -4,6 +4,7 @@
 #include "digraph.h"
 #include "reader.h"
 #include "weightGraph.h"
+#include "primMst.h"
 
 const static int NUM_V = 13;
 const static int NUM_E = 13;
@@ -28,7 +29,7 @@ char edgeData[][2] = {
 
 int main()
 {
-	if (true)
+	if (false)
 	{
 		std::cout << "graph: \n";
 		std::vector<edgeDT> dt;
@@ -37,7 +38,7 @@ int main()
 		std::cout << g.toString() << std::endl;
 	} 
 
-	if (true)
+	if (false)
 	{
 		std::cout << "digraph: \n";
 		std::vector<edgeDT> dt;
@@ -53,6 +54,8 @@ int main()
 		int v = readFile("data/tinyEWG.txt", EDT_3, dt);
 		WeightGraph g(v, dt);
 		std::cout << g.toString() << "\n";
+		PrimMst mst(&g);
+		std::cout << mst.toString() << std::endl;
 	}
 
 	std::cin.get();

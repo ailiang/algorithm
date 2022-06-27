@@ -11,6 +11,7 @@ public:
 	int other(int v) const;
 	int compareTo(const WeightEdge&);
 	std::string toString();
+	bool operator<(const WeightEdge& e) const;
 private:
 	int _v, _w;
 	double _weight;
