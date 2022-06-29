@@ -5,6 +5,7 @@
 #include "reader.h"
 #include "weightGraph.h"
 #include "primMst.h"
+#include "diWeightGraph.h"
 
 const static int NUM_V = 13;
 const static int NUM_E = 13;
@@ -47,7 +48,7 @@ int main()
 		std::cout << g.toString() << std::endl;
 	}
 
-	if (true)
+	if (false)
 	{
 		std::cout << "EWgraph: \n";
 		std::vector<edgeDT> dt;
@@ -57,6 +58,16 @@ int main()
 		PrimMst mst(&g);
 		std::cout << mst.toString() << std::endl;
 	}
+
+	if (true)
+	{
+		std::cout << "EWD: \n";
+		std::vector<edgeDT> dt;
+		int v = readFile("data/tinyEWD.txt", EDT_3, dt);
+		DiWeightGraph g(v, dt);
+		std::cout << g.toString() << "\n";
+	}
+
 
 	std::cin.get();
     return 0;
