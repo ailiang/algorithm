@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include <queue>
 #include <set>
 
 class DiWeightGraph;
@@ -23,8 +22,7 @@ public:
 private:
 	std::vector<double> _dis;
 	std::vector<DiWeightEdge> _path;
-	std::priority_queue<indexMin> _pq;
-	std::set<int> _marked;
+	std::set<indexMin> _pq;
 
 	void relex(DiWeightGraph* g, int v);
 };

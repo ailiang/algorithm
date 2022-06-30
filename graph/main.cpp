@@ -6,6 +6,7 @@
 #include "weightGraph.h"
 #include "primMst.h"
 #include "diWeightGraph.h"
+#include "dijkstra.h"
 
 const static int NUM_V = 13;
 const static int NUM_E = 13;
@@ -66,6 +67,26 @@ int main()
 		int v = readFile("data/tinyEWD.txt", EDT_3, dt);
 		DiWeightGraph g(v, dt);
 		std::cout << g.toString() << "\n";
+
+		dijkstra dijk(&g, 0);
+		for (int i = 0; i < v; i++)
+		{
+			std::cout << "v:" << i << " dis:" << dijk.disTo(i) << "\n";
+		}
+
+		std::stringstream ss;
+		for (int i = 0 ; i < v; i++)
+		{
+			ss << "v: " << i << " path: ";
+			auto path = dijk.pathTo(i);
+			for (auto& e: path)
+			{
+				ss << "->" << e.from();
+			}
+			ss << "\n";
+		}
+		std::cout << ss.str();
+		
 	}
 
 

@@ -1,4 +1,4 @@
-#include "dijkstro.h"
+#include "dijkstra.h"
 #include "diWeightGraph.h"
 
 dijkstra::dijkstra(DiWeightGraph * g, int s)
@@ -10,11 +10,11 @@ dijkstra::dijkstra(DiWeightGraph * g, int s)
 		_dis[i] = INT_MAX;
 	}
 	_dis[s] = 0;
-	_pq.push(indexMin(s, 0));
+	_pq.emplace(s, 0);
 	while (!_pq.empty())
 	{
-		auto v = _pq.top();
-		_pq.pop();
+		auto v = *_pq.begin();
+		_pq.erase(_pq.begin());
 		relex(g, v._v);
 	}
 }
@@ -27,8 +27,7 @@ bool dijkstra::hasPath(int v)
 std::vector<DiWeightEdge> dijkstra::pathTo(int v)
 {
 	std::vector<DiWeightEdge> ret;
-	auto &e = _path[v];
-	for (auto& e = _path[v]; e.from() > 0; e = _path[e.from()] )
+	for (auto e = _path[v]; e.from() >= 0; e = _path[e.from()] )
 	{
 		ret.push_back(e);
 	}
@@ -50,13 +49,15 @@ void dijkstra::relex(DiWeightGraph * g, int v)
 		{
 			_path[w] = e;
 			_dis[w] = e.weight() + _dis[v];
-			if ( _marked.count(w) > 0)
+			for (auto it = _pq.begin(); it != _pq.end(); it++)
 			{
-				//_pa.update(w, _dis[w]);
+				if (it->_v  == w)
+				{
+					_pq.erase(it);
+					break;
+				}
 			}
-			else {
-				_pq.push(indexMin(w, _dis[w]));
-			}
+			_pq.emplace(w, _dis[w]);
 		}
 	}
 }
