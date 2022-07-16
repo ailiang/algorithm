@@ -1,0 +1,51 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "mkdirBuild",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "build"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "cmakeRun",
+            "command": "cmake",
+            "args": [
+                "-G",
+                "MinGW Makefiles",
+                ".."
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "makeRun",
+            "command": "mingw32-make",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "buildall",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "cmakeRun",
+                "makeRun"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ],
+    "version": "2.0.0"
+}
