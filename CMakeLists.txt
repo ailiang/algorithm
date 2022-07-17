@@ -11,6 +11,7 @@ project(algorithm C CXX)
 add_executable(alg main.cpp)
 
 add_subdirectory(lru)
+add_subdirectory(graph)
 
 
 

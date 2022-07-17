@@ -25,7 +25,7 @@ PrimMst::PrimMst(WeightGraph * g)
 void PrimMst::visit(WeightGraph * g, int v)
 {
 	_marked[v] = true;
-	auto& vec = g->adj(v);
+	auto vec = g->adj(v);
 	for (auto& e: vec)
 	{
 		if (!_marked[e.other(v)])
